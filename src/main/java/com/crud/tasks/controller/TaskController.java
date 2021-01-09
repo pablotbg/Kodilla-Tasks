@@ -25,12 +25,12 @@ public class TaskController {
 
     }
 
-    @PostMapping(value = "updateTask")
+    @PutMapping(value = "updateTask")
     public TaskDto updateTask(TaskDto taskDto) {
         return new TaskDto(1L, "Edited test title", "Test content");
     }
 
-    @PutMapping(value = "createTask")
+    @PostMapping(value = "createTask")
     public void createTask(TaskDto taskDto) {
 
     }
