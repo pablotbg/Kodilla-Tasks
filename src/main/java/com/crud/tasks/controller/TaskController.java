@@ -13,11 +13,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/task")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class TaskController {
 
     private final DbService service;
     private final TaskMapper taskMapper;
-    
 
     @GetMapping(value = "getTasks")
     public List<TaskDto> getTasks() {
@@ -33,12 +33,12 @@ public class TaskController {
     }
 
     @DeleteMapping(value = "deleteTask")
-    public void deleteOneTask(@RequestParam Long id) {
-        service.deleteTask(id);
+    public void deleteTask(@RequestParam Long taskId) {
+        service.deleteTask(taskId);
     }
 
     @PutMapping(value = "updateTask")
-    public TaskDto updateTask(TaskDto taskDto) {
+    public TaskDto updateTask(@RequestBody TaskDto taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         Task savedTask = service.saveTask(task);
         return taskMapper.mapToTaskDto(savedTask);
